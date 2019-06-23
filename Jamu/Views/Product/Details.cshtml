@@ -1,0 +1,109 @@
+﻿@model Jamu.Models.ProductModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Brand
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            Image
+        </dt>
+
+        <dd>
+            @if (!string.IsNullOrWhiteSpace(Model.Image))
+            {
+                <img src="/Uploads/@Model.Image" class="thumbnail" width="100" alt="@Model.Name">
+            }
+            else
+            {
+                <label class="label label-warning">No Images</label>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Expired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Expired)
+        </dd>
+
+        <dt>
+           Categories
+        </dt>
+
+        <dd>
+            @{ 
+                var categories = Model.Category.ToList();
+                if(categories != null)
+                {
+                    <ul>
+                        @foreach(var row in categories)
+                        {
+                            <li>@row.Name</li>
+                        }
+                    </ul>
+                }
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
